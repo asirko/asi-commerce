@@ -1,3 +1,13 @@
 :host {
   display: block;
 }
+
+.field {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.field-is-fullwidth {
+  width: 100%;
+}

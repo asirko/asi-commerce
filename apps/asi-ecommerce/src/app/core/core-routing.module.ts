@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { AuthGuard } from './auth/auth.guard';
+import { UserGuard } from '../shared/stores/user/user.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [UserGuard],
     children: [
       {
         path: '',
@@ -15,6 +18,7 @@ const routes: Routes = [
       {
         path: 'cart',
         loadChildren: () => import('../features/cart/cart.module').then(m => m.CartModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'products',
@@ -23,6 +27,7 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('../features/user/user.module').then(m => m.UserModule),
+        canActivate: [AuthGuard],
       },
     ],
   },

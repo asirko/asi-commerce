@@ -17,10 +17,7 @@
             "tsConfig": "apps/asi-ecommerce/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/asi-ecommerce/src/favicon.ico", "apps/asi-ecommerce/src/assets"],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "apps/asi-ecommerce/src/styles.scss"
-            ],
+            "styles": ["apps/asi-ecommerce/src/styles.scss"],
             "stylePreprocessorOptions": {
               "includePaths": ["apps/asi-ecommerce/src/styles/shared/"]
             },
