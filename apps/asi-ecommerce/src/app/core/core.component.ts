@@ -1,16 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'asi-ecommerce-core',
-  templateUrl: './core.component.html',
-  styleUrls: ['./core.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'eco-core',
+  template: `<router-outlet></router-outlet>`,
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoreComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class CoreComponent {}

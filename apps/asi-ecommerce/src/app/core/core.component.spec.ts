@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoreComponent } from './core.component';
+import { RouterModule } from '@angular/router';
 
 describe('CoreComponent', () => {
   let component: CoreComponent;
@@ -8,9 +9,9 @@ describe('CoreComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoreComponent ]
-    })
-    .compileComponents();
+      declarations: [CoreComponent],
+      imports: [RouterModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

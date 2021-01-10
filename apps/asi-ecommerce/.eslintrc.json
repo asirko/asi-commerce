@@ -4,17 +4,14 @@
   "overrides": [
     {
       "files": ["*.ts"],
-      "extends": [
-        "plugin:@nrwl/nx/angular",
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ],
-      "parserOptions": { "project": ["apps/asi-ecommerce/tsconfig.*?.json"] },
+      "extends": ["plugin:@nrwl/nx/angular", "plugin:@angular-eslint/template/process-inline-templates"],
+      "parserOptions": {"project": ["apps/asi-ecommerce/tsconfig.*?.json"]},
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
-            "prefix": "asi-ecommerce",
+            "prefix": "eco",
             "style": "camelCase"
           }
         ],
@@ -22,7 +19,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "asi-ecommerce",
+            "prefix": "eco",
             "style": "kebab-case"
           }
         ]

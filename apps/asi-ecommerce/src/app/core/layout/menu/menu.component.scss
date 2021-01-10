@@ -1,0 +1,22 @@
+@import 'theme';
+
+:host {
+  display: block;
+}
+
+a {
+  padding: 5px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  color: mat-color(map-get($theme, primary), 50);
+
+  &:first-child {
+    font-size: 1.5em;
+    margin-right: 30px;
+  }
+
+  &.active {
+    background-color: mat-color(map-get($theme, primary), 400);
+  }
+}

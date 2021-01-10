@@ -5,7 +5,7 @@
       "projectType": "application",
       "root": "apps/asi-ecommerce",
       "sourceRoot": "apps/asi-ecommerce/src",
-      "prefix": "asi-ecommerce",
+      "prefix": "eco",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -16,11 +16,14 @@
             "polyfills": "apps/asi-ecommerce/src/polyfills.ts",
             "tsConfig": "apps/asi-ecommerce/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/asi-ecommerce/src/favicon.ico",
-              "apps/asi-ecommerce/src/assets"
+            "assets": ["apps/asi-ecommerce/src/favicon.ico", "apps/asi-ecommerce/src/assets"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "apps/asi-ecommerce/src/styles.scss"
             ],
-            "styles": ["apps/asi-ecommerce/src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["apps/asi-ecommerce/src/styles/shared/"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -74,10 +77,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/asi-ecommerce/src/**/*.ts",
-              "apps/asi-ecommerce/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/asi-ecommerce/src/**/*.ts", "apps/asi-ecommerce/src/**/*.html"]
           }
         },
         "test": {
@@ -182,7 +182,8 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "e45fd20a-a4a4-4151-b7b2-fe2031bf5a92"
   },
   "schematics": {
     "@nrwl/angular": {
