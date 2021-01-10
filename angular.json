@@ -1,0 +1,213 @@
+{
+  "version": 1,
+  "projects": {
+    "asi-ecommerce": {
+      "projectType": "application",
+      "root": "apps/asi-ecommerce",
+      "sourceRoot": "apps/asi-ecommerce/src",
+      "prefix": "asi-ecommerce",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/asi-ecommerce",
+            "index": "apps/asi-ecommerce/src/index.html",
+            "main": "apps/asi-ecommerce/src/main.ts",
+            "polyfills": "apps/asi-ecommerce/src/polyfills.ts",
+            "tsConfig": "apps/asi-ecommerce/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/asi-ecommerce/src/favicon.ico",
+              "apps/asi-ecommerce/src/assets"
+            ],
+            "styles": ["apps/asi-ecommerce/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/asi-ecommerce/src/environments/environment.ts",
+                  "with": "apps/asi-ecommerce/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "asi-ecommerce:build",
+            "proxyConfig": "apps/asi-ecommerce/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "asi-ecommerce:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "asi-ecommerce:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/asi-ecommerce/src/**/*.ts",
+              "apps/asi-ecommerce/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/asi-ecommerce"],
+          "options": {
+            "jestConfig": "apps/asi-ecommerce/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "asi-ecommerce-e2e": {
+      "root": "apps/asi-ecommerce-e2e",
+      "sourceRoot": "apps/asi-ecommerce-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/asi-ecommerce-e2e/cypress.json",
+            "tsConfig": "apps/asi-ecommerce-e2e/tsconfig.e2e.json",
+            "devServerTarget": "asi-ecommerce:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "asi-ecommerce:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/asi-ecommerce-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api"],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-interfaces": {
+      "root": "libs/api-interfaces",
+      "sourceRoot": "libs/api-interfaces/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss",
+      "displayBlock": true,
+      "changeDetection": "OnPush"
+    }
+  },
+  "defaultProject": "asi-ecommerce"
+}
