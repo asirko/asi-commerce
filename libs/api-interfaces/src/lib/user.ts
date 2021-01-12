@@ -3,6 +3,7 @@ export interface User {
   lastName: string;
   phone: string;
   email: string;
+  password?: string;
   allowNewsLetter: boolean;
   adresses: Address[];
 }
