@@ -1,14 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-
-import { UserService } from './user.service';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { User } from '@asi-ecommerce/api-interfaces';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { Request } from 'express';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
-
+  @UseGuards(JwtAuthGuard)
   @Get('me')
-  getData(): User {
-    return this.userService.getMe();
+  getData(@Req() req: Request): User {
+    return req.user as User;
   }
 }

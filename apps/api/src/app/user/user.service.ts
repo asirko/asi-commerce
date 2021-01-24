@@ -5,6 +5,7 @@ import { User } from '@asi-ecommerce/api-interfaces';
 export class UserService {
   private readonly users: User[] = [
     {
+      id: 0,
       firstName: 'Alexandre',
       lastName: 'Sirko',
       email: 'sirko.alexandre@gmail.com',
@@ -14,6 +15,7 @@ export class UserService {
       adresses: [{ city: 'Toulouse', name: 'Bureau', postalCode: '31000', street: '37 rue des marchands' }],
     },
     {
+      id: 1,
       firstName: 'test',
       lastName: 'test',
       email: 'test@test.com',
@@ -28,15 +30,7 @@ export class UserService {
     return this.users.find(user => user.email === email);
   }
 
-  getMe(): User {
-    return {
-      firstName: 'Alexandre',
-      lastName: 'Sirko',
-      email: 'sirko.alexandre@gmail.com',
-      password: 'test',
-      phone: '0607080910',
-      allowNewsLetter: false,
-      adresses: [{ city: 'Toulouse', name: 'Bureau', postalCode: '31000', street: '37 rue des marchands' }],
-    };
+  getUserById(id: number): User {
+    return this.users.find(u => u.id === id);
   }
 }

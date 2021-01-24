@@ -4,7 +4,6 @@ import * as UserActions from './user.action';
 import { UserService } from './user.service';
 import { tap } from 'rxjs/operators';
 import { User } from '@asi-ecommerce/api-interfaces';
-import { AuthInterceptor } from '../../../core/auth/auth.interceptor';
 import { AuthService } from '../../../core/auth/auth.service';
 
 class UserStateModel {
@@ -34,8 +33,14 @@ export class UserState {
       tap(user => ctx.patchState({ user })), //
     );
   }
+
+  @Action(UserActions.UserLogin)
+  loginUser(ctx: StateContext<UserStateModel>, { login, password }: UserActions.UserLogin) {
+    return this.authService.login$(login, password).pipe(tap(user => ctx.patchState({ user })));
+  }
+
   @Action(UserActions.UserUpdate)
   updateUser(ctx: StateContext<UserStateModel>) {
-    // temp
+    // todo
   }
 }
