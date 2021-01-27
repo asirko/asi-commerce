@@ -16,6 +16,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
-    return this.userService.getUserById(payload.sub);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...user } = this.userService.getUserById(payload.sub);
+    return user;
   }
 }
